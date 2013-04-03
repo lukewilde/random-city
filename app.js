@@ -17,8 +17,8 @@ function generateCoordinates(levelSeed) {
   for (var i = 0; i < totalPoints; i++) {
 
       var point =
-        { x: chaosPoints[i] * dimensions.width
-        , y: chaosPoints[i + 10] * dimensions.height
+        { x: Math.floor(chaosPoints[i] * dimensions.width)
+        , y: Math.floor(chaosPoints[i + 10] * dimensions.height)
         }
 
     points[i] = point

@@ -5,7 +5,7 @@ var levelSeeds = [51748, 76294, 52836, 97264, 81537]
     ,  height: 400
     }
 
-function generateCoordinates(levelSeed) {
+function generateLevel(levelSeed) {
 
   var totalPoints = Math.floor(levelSeed / 4000)
     , points = []
@@ -48,9 +48,9 @@ function getChaos(seed, total) {
 var levels = []
 
 levelSeeds.forEach(function(seed) {
-  levels.push(generateCoordinates(seed))
+  levels.push(generateLevel(seed))
 })
 
 console.log('payload', levels)
 
-// console.log('payload', generateCoordinates(levelSeed))
+// console.log('payload', generateLevel(levelSeed))

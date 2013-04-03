@@ -42,12 +42,12 @@ function getChaos(seed) {
   var data = []
    , currentSeed = '0.' + seed
 
-  for (var i = 0; i < 30; i++) {
+  for (var i = 0; i < 100; i++) {
     currentSeed = logisticMap(currentSeed)
     data.push(currentSeed)
   }
 
-  return data
+  return data.splice(70, 30)
 }
 
 console.log('payload', generateCoordinates(levelSeed))

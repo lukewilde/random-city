@@ -1,4 +1,5 @@
-var levelSeed = 51748
+// var levelSeed = 51748
+var levelSeeds = [51748, 76294, 52836, 97264, 81537]
 
 function generateCoordinates(levelSeed) {
 
@@ -10,8 +11,8 @@ function generateCoordinates(levelSeed) {
       ,  height: 400
       }
 
-  console.log('Generating ' + totalPoints + ' coordinates')
-  console.log('Generating chaos: ', chaosPoints)
+  // console.log('Generating ' + totalPoints + ' coordinates')
+  // console.log('Generating chaos: ', chaosPoints)
 
   for (var i = 0; i < totalPoints; i++) {
 
@@ -44,4 +45,12 @@ function getChaos(seed, total) {
   return data.splice(100, total)
 }
 
-console.log('payload', generateCoordinates(levelSeed))
+var levels = []
+
+levelSeeds.forEach(function(seed) {
+  levels.push(generateCoordinates(seed))
+})
+
+console.log('payload', levels)
+
+// console.log('payload', generateCoordinates(levelSeed))

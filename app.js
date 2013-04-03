@@ -4,31 +4,26 @@ function generateCoordinates(levelSeed) {
 
   var totalPoints = Math.floor(levelSeed / 4000)
     , points = []
-    , chaos = getChaos(levelSeed, totalPoints)
+    , chaosPoints = getChaos(levelSeed, totalPoints * 2)
+    , dimensions =
+      {  width: 600
+      ,  height: 400
+      }
 
   console.log('Generating ' + totalPoints + ' coordinates')
+  console.log('Generating chaos: ', chaosPoints)
 
-  console.log('Generating chaos: ', chaos)
-  // get chaos array.
+  for (var i = 0; i < totalPoints; i++) {
 
+      var point =
+        { x: chaosPoints[i] * dimensions.width
+        , y: chaosPoints[i + 10] * dimensions.height
+        }
 
-  // for (var i = 0; i < totalPoints; i++) {
-
-  //   var currentSeed = getNextPointSeed()
-  //     , point =
-  //       { x: 1
-  //       , y: 2
-  //       }
-
-  //   points[i] = point
-  // }
+    points[i] = point
+  }
 
   return points
-}
-
-function getNextPointSeed(currentSeed) {
-  var string = '' + currentSeed
-  return string
 }
 
 function logisticMap(x) {

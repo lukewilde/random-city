@@ -4,14 +4,12 @@ function generateCoordinates(levelSeed) {
 
   var totalPoints = Math.floor(levelSeed / 4000)
     , points = []
-    , chaos = getChaos(levelSeed)
+    , chaos = getChaos(levelSeed, totalPoints)
 
   console.log('Generating ' + totalPoints + ' coordinates')
 
   console.log('Generating chaos: ', chaos)
   // get chaos array.
-  // use level seed to select a 'total' number of psuedo random indexes for chaos
-  //
 
 
   // for (var i = 0; i < totalPoints; i++) {
@@ -37,17 +35,18 @@ function logisticMap(x) {
   return 4 * x * (1 - x)
 }
 
-function getChaos(seed) {
+function getChaos(seed, total) {
 
   var data = []
    , currentSeed = '0.' + seed
 
-  for (var i = 0; i < 100; i++) {
+   // 100 iterations will provide adequate randomness
+  for (var i = 0; i < 100 + total; i++) {
     currentSeed = logisticMap(currentSeed)
     data.push(currentSeed)
   }
 
-  return data.splice(70, 30)
+  return data.splice(100, total)
 }
 
 console.log('payload', generateCoordinates(levelSeed))

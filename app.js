@@ -1,29 +1,53 @@
+var levelSeed = 51748
 
 function generateCoordinates(levelSeed) {
 
-  var total = Math.floor(levelSeed / 4000)
+  var totalPoints = Math.floor(levelSeed / 4000)
     , points = []
+    , chaos = getChaos(levelSeed)
 
-  console.log('Generating ' + total + ' coordinates')
+  console.log('Generating ' + totalPoints + ' coordinates')
 
-  for (var i = 0; i < total; i++) {
+  console.log('Generating chaos: ', chaos)
+  // get chaos array.
+  // use level seed to select a 'total' number of psuedo random indexes for chaos
+  //
 
-    var currentSeed = getNextPointSeed()
-      , point =
-        { x: 1
-        , y: 2
-        }
 
-    points[i] = point
-  }
+  // for (var i = 0; i < totalPoints; i++) {
+
+  //   var currentSeed = getNextPointSeed()
+  //     , point =
+  //       { x: 1
+  //       , y: 2
+  //       }
+
+  //   points[i] = point
+  // }
 
   return points
 }
 
 function getNextPointSeed(currentSeed) {
-
+  var string = '' + currentSeed
+  return string
 }
 
-var levelSeed = 51747
+function logisticMap(x) {
+  return 4 * x * (1 - x)
+}
 
-console.log(generateCoordinates(levelSeed))
+function getChaos(seed) {
+
+  var data = []
+   , currentSeed = '0.' + seed
+
+  for (var i = 0; i < 30; i++) {
+    currentSeed = logisticMap(currentSeed)
+    data.push(currentSeed)
+  }
+
+  return data
+}
+
+console.log('payload', generateCoordinates(levelSeed))

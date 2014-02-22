@@ -1,46 +1,42 @@
-var canvas = document.getElementById("chillin-city")
-  , context = canvas.getContext("2d")
+var canvas = document.getElementById('chillin-city')
+  , context = canvas.getContext('2d')
   , canvasWidth = canvas.width
   , canvasHeight = canvas.height
 
-  , citySeed = 51748
-
-  , buildingRules:
+  , buildingRules =
     { dimensions:
       { height: { max: 300, min: 20 }
       , width: { max: 40, min: 20 }
       }
     }
 
-  , cityRules:
-    { density: 30
+  , cityRules =
+    { numberOfBuildings: { max: 1000, min: 800 }
+    , density: 30
     , gapRate: 1 / 5
-    , heightModRate:: 1 / 6
+    , heightModRate: 1 / 6
     , verticalOffset: { higher: 20, lower: 60}
     }
 
-  , buildings = []
-
 function generateCity(citySeed) {
 
-  var totalBuildings = Math.floor(citySeed / 4000)
-    , building = []
-    , chaosbuilding = getChaos(citySeed, totalbuilding * 2)
+  var buildings = []
+    , randomSequence = getRandoms(citySeed, 101)
+    , numberOfBuildings = randomSequence.shift()
 
-  console.log('Generating ' + totalbuilding + ' coordinates')
-  console.log('Generating chaos: ', chaosbuilding)
+  console.log('Generating ' + numberOfBuildings + ' coordinates')
 
-  for (var i = 0; i < totalbuilding; i++) {
+  // for (var i = 0; i < totalbuilding; i++) {
 
-      var point =
-        { x: Math.floor(chaosbuilding[i] * dimensions.width)
-        , y: Math.floor(chaosbuilding[i + 10] * dimensions.height)
-        }
+  //     var point =
+  //       { x: Math.floor(randomSequence[i] * dimensions.width)
+  //       , y: Math.floor(randomSequence[i + 10] * dimensions.height)
+  //       }
 
-    building[i] = point
-  }
+  //   building[i] = point
+  // }
 
-  return building
+  return buildings
 }
 
 // buildingSeeds.forEach(function(seed) {

@@ -2,7 +2,7 @@ function logisticMap(x) {
   return 4 * x * (1 - x)
 }
 
-function getChaos(seed, total) {
+function getRandoms(seed, total) {
 
   var data = []
    , currentSeed = '0.' + seed

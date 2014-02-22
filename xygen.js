@@ -1,26 +1,26 @@
-var RandomSequence = function() {
+var RandomSequence = function(seed) {
 
-  if (RandomSequence.prototype._singletonInstance) {
-    return RandomSequence.prototype._singletonInstance;
-  }
+  this.seed = seed
+  var currentSeed = null
 
-  RandomSequence.prototype._singletonInstance = this;
-
-  this.getRandoms = function getRandoms(seed, total) {
-
-    var data = []
-     , currentSeed = '0.' + seed
-
-     // 100 iterations will provide adequate randomness
-    for (var i = 0; i < 100 + total; i++) {
-      currentSeed = logisticMap(currentSeed)
-      data.push(currentSeed)
-    }
-
-    return data.splice(100, total)
+  this.get = function() {
+    currentSeed = logisticMap(currentSeed)
+    return currentSeed
   }
 
   function logisticMap(x) {
     return 4 * x * (1 - x)
   }
+
+  function primeChaos() {
+    currentSeed = '0.' + seed
+
+    // 100 iterations will provide adequate randomness
+    for (var i = 0; i < 99; i++) {
+      currentSeed = logisticMap(currentSeed)
+    }
+  }
+
+  primeChaos()
 }
+

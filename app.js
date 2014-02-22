@@ -21,30 +21,32 @@ var canvas = document.getElementById('chillin-city')
 function generateCity(citySeed) {
 
   var buildings = []
-    , randomSequence = getRandoms(citySeed, 101)
+    , randomSequence = new RandomSequence(citySeed)
     , numberOfBuildings = getNumberOfBuildings(randomSequence)
 
   console.log('Generating ' + numberOfBuildings + ' buildings')
 
-  for (var i = 0; i < numberOfBuildings; i++) {
+  // for (var i = 0; i < numberOfBuildings; i++) {
 
-      var building =
-        { x: Math.floor(randomSequence[i] * dimensions.width)
-        , y: Math.floor(randomSequence[i + 10] * dimensions.height)
-        }
+  //   var building =
+  //     { x: Math.floor(randomSequence[i] * dimensions.width)
+  //     , y: Math.floor(randomSequence[i + 10] * dimensions.height)
+  //     }
 
-    building[i] = building
-  }
+  //   building[i] = building
+  // }
 
   return buildings
 }
 
 function getNumberOfBuildings(randomSequence) {
-  return ~~getRandomBetween(randomSequence.shift(), cityRules.Numbuildings.max, cityRules.Numbuildings.min)
+  return ~~getRandomBetween(randomSequence.get(), cityRules.Numbuildings.min, cityRules.Numbuildings.max)
 }
 
 function getRandomBetween(random, min, max) {
-  return min + ((max - min) * random)
+  var result = min + ((max - min) * random)
+    // console.log("Generating: ", random, min, max, result)
+  return result
 }
 
 // buildingSeeds.forEach(function(seed) {

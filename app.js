@@ -26,15 +26,15 @@ function generateCity(citySeed) {
 
   console.log('Generating ' + numberOfBuildings + ' buildings')
 
-  // for (var i = 0; i < totalbuilding; i++) {
+  for (var i = 0; i < numberOfBuildings; i++) {
 
-  //     var point =
-  //       { x: Math.floor(randomSequence[i] * dimensions.width)
-  //       , y: Math.floor(randomSequence[i + 10] * dimensions.height)
-  //       }
+      var building =
+        { x: Math.floor(randomSequence[i] * dimensions.width)
+        , y: Math.floor(randomSequence[i + 10] * dimensions.height)
+        }
 
-  //   building[i] = point
-  // }
+    building[i] = building
+  }
 
   return buildings
 }

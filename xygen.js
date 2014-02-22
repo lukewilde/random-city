@@ -11,8 +11,8 @@ function generateLevel(levelSeed) {
     , points = []
     , chaosPoints = getChaos(levelSeed, totalPoints * 2)
 
-  // console.log('Generating ' + totalPoints + ' coordinates')
-  // console.log('Generating chaos: ', chaosPoints)
+  console.log('Generating ' + totalPoints + ' coordinates')
+  console.log('Generating chaos: ', chaosPoints)
 
   for (var i = 0; i < totalPoints; i++) {
 

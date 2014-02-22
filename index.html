@@ -4,23 +4,14 @@
     <meta charset="utf-8" />
     <title>Chillin' City</title>
 
-    <script type="text/javasctipt" src="xygen.js" ></script>
-
+    <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
   </head>
   <body>
-
-    <canvas class="chillin-city" width="600" height="400"/>
-
-    <script text="text/javascript">
-      var canvas = document.querySelectorAll(".chillin-city")[0]
-        , context = canvas.getContext("2d")
-        , width = canvas.width
-        , height = canvas.height
-
-
-        context.fillRect(0, 0, width, height)
-
-    </script>
-
+    <div class="container">
+      <canvas id="chillin-city" width="6000" height="400"></canvas>
+    </div>
   </body>
+
+  <script type="text/javascript" src="xygen.js" ></script>
+  <script type="text/javascript" src="app.js" ></script>
 </html>

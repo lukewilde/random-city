@@ -1,10 +1,25 @@
 var canvas = document.getElementById("chillin-city")
   , context = canvas.getContext("2d")
-  , width = canvas.width
-  , height = canvas.height
+  , canvasWidth = canvas.width
+  , canvasHeight = canvas.height
+
+  , citySeed = 51748
+
+  , buildingRules:
+    { dimensions:
+      { height: { max: 300, min: 20 }
+      , width: { max: 40, min: 20 }
+      }
+    }
+
+  , cityRules:
+    { density: 30
+    , gapRate: 1 / 5
+    , heightModRate:: 1 / 6
+    , verticalOffset: { higher: 20, lower: 60}
+    }
+
   , buildings = []
-  , cities = [51748, 76294, 52836, 97264, 81537]
-  , city = cities[0]
 
 function generateCity(citySeed) {
 

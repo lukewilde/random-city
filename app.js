@@ -23,24 +23,24 @@ var canvas = document.getElementById("chillin-city")
 
 function generateCity(citySeed) {
 
-  var totalPoints = Math.floor(citySeed / 4000)
-    , points = []
-    , chaosPoints = getChaos(citySeed, totalPoints * 2)
+  var totalBuildings = Math.floor(citySeed / 4000)
+    , building = []
+    , chaosbuilding = getChaos(citySeed, totalbuilding * 2)
 
-  console.log('Generating ' + totalPoints + ' coordinates')
-  console.log('Generating chaos: ', chaosPoints)
+  console.log('Generating ' + totalbuilding + ' coordinates')
+  console.log('Generating chaos: ', chaosbuilding)
 
-  for (var i = 0; i < totalPoints; i++) {
+  for (var i = 0; i < totalbuilding; i++) {
 
       var point =
-        { x: Math.floor(chaosPoints[i] * dimensions.width)
-        , y: Math.floor(chaosPoints[i + 10] * dimensions.height)
+        { x: Math.floor(chaosbuilding[i] * dimensions.width)
+        , y: Math.floor(chaosbuilding[i + 10] * dimensions.height)
         }
 
-    points[i] = point
+    building[i] = point
   }
 
-  return points
+  return building
 }
 
 // buildingSeeds.forEach(function(seed) {
@@ -49,4 +49,4 @@ function generateCity(citySeed) {
 
 // console.log('payload', buildings)
 
-context.fillRect(0, 0, width, height)
+context.fillRect(0, 0, canvasWidth, canvasHeight)

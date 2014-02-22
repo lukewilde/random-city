@@ -26,15 +26,16 @@ function generateCity(citySeed) {
 
   console.log('Generating ' + numberOfBuildings + ' buildings')
 
-  // for (var i = 0; i < numberOfBuildings; i++) {
+  for (var i = 0; i < numberOfBuildings; i++) {
 
-  //   var building =
-  //     { x: Math.floor(randomSequence[i] * dimensions.width)
-  //     , y: Math.floor(randomSequence[i + 10] * dimensions.height)
-  //     }
+    // var building =
+    //   { height:
+    //   , width:
+    //   , x:
+    //   }
 
-  //   building[i] = building
-  // }
+    // building[i] = building
+  }
 
   return buildings
 }
@@ -44,9 +45,7 @@ function getNumberOfBuildings(randomSequence) {
 }
 
 function getRandomBetween(random, min, max) {
-  var result = min + ((max - min) * random)
-    // console.log("Generating: ", random, min, max, result)
-  return result
+  return min + ((max - min) * random)
 }
 
 // buildingSeeds.forEach(function(seed) {

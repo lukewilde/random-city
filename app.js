@@ -1,13 +1,13 @@
 var  buildingRules =
     { dimensions:
       { height: { max: 300, min: 200 }
-      , width: { max: 420, min: 80 }
+      , width: { max: 420, min: 120 }
       }
     }
 
   , cityRules =
     { numBuildings: { max: 60, min: 40 }
-    , density: { max: 400, min: 50 }
+    , density: { max: 800, min: 50 }
     , gapRate: 1 / 5
     , heightModRate: 1 / 6
     , firstBuildingOffset: 30
@@ -98,14 +98,14 @@ function drawBuildings(canvas, buildings) {
       , height = building.height
 
 
-    context.beginPath();
+    context.beginPath()
     context.rect(x, y, width, height)
-    context.fillStyle = 'yellow';
-    context.fill();
-    context.lineWidth = 2;
-    context.strokeStyle = 'black';
-    context.stroke();
-    context.closePath();
-  };
+    context.fillStyle = 'yellow'
+    context.fill()
+    context.lineWidth = 2
+    context.strokeStyle = 'black'
+    context.stroke()
+    context.closePath()
+  }
 
 }

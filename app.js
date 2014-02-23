@@ -1,13 +1,13 @@
 var  buildingRules =
     { dimensions:
       { height: { max: 300, min: 200 }
-      , width: { max: 120, min: 40 }
+      , width: { max: 420, min: 80 }
       }
     }
 
   , cityRules =
     { numBuildings: { max: 60, min: 40 }
-    , density: { max: 40, min: 10 }
+    , density: { max: 400, min: 50 }
     , gapRate: 1 / 5
     , heightModRate: 1 / 6
     , firstBuildingOffset: 30

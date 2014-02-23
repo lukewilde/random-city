@@ -7,11 +7,12 @@ var  buildingRules =
 
   , cityRules =
     { numBuildings: { max: 40, min: 20 }
-    , density: { max: 800, min: 50 }
-    , gapRate: 1 / 5
-    , heightModRate: 1 / 6
+    , gap: { max: 800, min: 50, rate: 1 / 5 }
+    , heightDelta:
+      { up: {min: 10, max: 100, rate: 1 / 6}
+      , down: {min: 10, max: 400, rate: 1 / 6}
+      }
     , firstBuildingOffset: 30
-    , verticalOffset: { higher: 20, lower: 60}
     }
 
 function generateCity(citySeed) {
@@ -53,8 +54,8 @@ function getRandomDistance(randomSequence, currentXOffset, lastBuildingWidth) {
 
   var distance = currentXOffset;
 
-  if (randomSequence.get() <= cityRules.gapRate) {
-    distance += ~~getRandomBetween(randomSequence.get(), cityRules.density)
+  if (randomSequence.get() <= cityRules.gap.rate) {
+    distance += ~~getRandomBetween(randomSequence.get(), cityRules.gap)
   }
 
   return distance

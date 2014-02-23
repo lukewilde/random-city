@@ -1,9 +1,4 @@
-var canvas = document.getElementById('chillin-city')
-  , context = canvas.getContext('2d')
-  , canvasWidth = canvas.width
-  , canvasHeight = canvas.height
-
-  , buildingRules =
+var  buildingRules =
     { dimensions:
       { height: { max: 300, min: 20 }
       , width: { max: 40, min: 20 }
@@ -15,6 +10,7 @@ var canvas = document.getElementById('chillin-city')
     , density: { max: 40, min: 10 }
     , gapRate: 1 / 5
     , heightModRate: 1 / 6
+    , firstBuildingOffset: 30
     , verticalOffset: { higher: 20, lower: 60}
     }
 
@@ -25,7 +21,9 @@ function generateCity(citySeed) {
     , numberOfBuildings = getNumberOfBuildings(randomSequence)
 
     , lastBuildingHeight = getRandomHeight(randomSequence)
-    , lastBuildingX = 0
+    , lastBuildingWidth = 0
+
+    , currentXOffset = cityRules.firstBuildingOffset
 
   console.log('Generating ' + numberOfBuildings + ' buildings')
 
@@ -34,11 +32,14 @@ function generateCity(citySeed) {
     var building =
       { height: getRandomHeight(randomSequence)
       , width: getRandomWidth(randomSequence)
-      , x: getRandomDistance(randomSequence)
       }
 
-    lastBuildingX = building.x + building.width
+    building.x = getRandomDistance(randomSequence, currentXOffset, lastBuildingWidth)
+
     lastBuildingHeight = building.height
+    lastBuildingWidth = building.width
+
+    currentXOffset += (building.x - currentXOffset) + building.width
 
     buildings.push(building)
   }
@@ -48,15 +49,17 @@ function generateCity(citySeed) {
   return buildings
 }
 
-function getRandomDistance(randomSequence, lastBuildingX) {
+function getRandomDistance(randomSequence, currentXOffset, lastBuildingWidth) {
 
-  var distance = lastBuildingX;
+  var distance = currentXOffset + lastBuildingWidth;
 
   if (randomSequence.get() >= cityRules.gapRate) {
-    return ~~getRandomBetween(randomSequence.get(), cityRules.density)
-  } else {
-    return distance
+    distance += ~~getRandomBetween(randomSequence.get(), cityRules.density)
   }
+
+  console.log('distance:', currentXOffset, distance)
+
+  return distance
 }
 
 function getRandomWidth(randomSequence) {
@@ -75,10 +78,36 @@ function getRandomBetween(random, object) {
   return object.min + ((object.max - object.min) * random)
 }
 
-// buildingSeeds.forEach(function(seed) {
-//   buildings.push(generateBuilding(seed))
-// })
+function drawBuildings(canvas, buildings) {
 
-// console.log('payload', buildings)
+  var context = canvas.getContext('2d')
+    , canvasWidth = canvas.width
+    , canvasHeight = canvas.height
 
-context.fillRect(0, 0, canvasWidth, canvasHeight)
+  // Draw background.
+  context.fillRect(0, 0, canvasWidth, canvasHeight)
+
+  // Set building colour.
+  context.fillStyle = "rgb(200,0,0)";
+
+  // Draw the bleeders.
+  for (var i = 0; i < buildings.length; i++) {
+
+    var building = buildings[i]
+      , y = canvasHeight - building.height
+      , x = building.x
+      , width = building.width
+      , height = building.height
+
+
+    context.beginPath();
+    context.rect(x, y, width, height)
+    context.fillStyle = 'yellow';
+    context.fill();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.stroke();
+    context.closePath();
+  };
+
+}

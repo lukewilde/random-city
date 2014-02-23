@@ -18,8 +18,9 @@
   <script type="text/javascript">
 
     var citySeed = 514829
+      , buildings = generateCity(citySeed)
+      , canvas = document.getElementById('chillin-city')
 
-    generateCity(citySeed);
-
+      drawBuildings(canvas, buildings)
   </script>
 </html>

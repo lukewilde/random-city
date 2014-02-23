@@ -85,9 +85,6 @@ function drawBuildings(canvas, buildings) {
   // Draw background.
   context.fillRect(0, 0, canvasWidth, canvasHeight)
 
-  // Set building colour.
-  context.fillStyle = "rgb(200,0,0)";
-
   // Draw the bleeders.
   for (var i = 0; i < buildings.length; i++) {
 
@@ -96,7 +93,6 @@ function drawBuildings(canvas, buildings) {
       , x = building.x
       , width = building.width
       , height = building.height
-
 
     context.beginPath()
     context.rect(x, y, width, height)
@@ -107,5 +103,4 @@ function drawBuildings(canvas, buildings) {
     context.stroke()
     context.closePath()
   }
-
 }

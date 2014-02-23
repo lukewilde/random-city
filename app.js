@@ -6,7 +6,7 @@ var  buildingRules =
     }
 
   , cityRules =
-    { numBuildings: { max: 60, min: 40 }
+    { numBuildings: { max: 40, min: 20 }
     , density: { max: 800, min: 50 }
     , gapRate: 1 / 5
     , heightModRate: 1 / 6

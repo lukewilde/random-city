@@ -97,9 +97,15 @@ function drawBuildings(canvas, buildings) {
     context.beginPath()
     context.rect(x, y, width, height)
     context.fillStyle = 'yellow'
+
+    if (i === buildings.length -1) {
+      context.fillStyle = 'red'
+    }
+
     context.fill()
     context.lineWidth = 2
     context.strokeStyle = 'black'
+
     context.stroke()
     context.closePath()
   }

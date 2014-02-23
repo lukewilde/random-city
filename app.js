@@ -51,13 +51,11 @@ function generateCity(citySeed) {
 
 function getRandomDistance(randomSequence, currentXOffset, lastBuildingWidth) {
 
-  var distance = currentXOffset + lastBuildingWidth;
+  var distance = currentXOffset;
 
-  if (randomSequence.get() >= cityRules.gapRate) {
+  if (randomSequence.get() <= cityRules.gapRate) {
     distance += ~~getRandomBetween(randomSequence.get(), cityRules.density)
   }
-
-  console.log('distance:', currentXOffset, distance)
 
   return distance
 }

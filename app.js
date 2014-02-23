@@ -11,8 +11,8 @@ var canvas = document.getElementById('chillin-city')
     }
 
   , cityRules =
-    { Numbuildings: { max: 60, min: 40 }
-    , density: 30
+    { numBuildings: { max: 60, min: 40 }
+    , density: { max: 40, min: 10 }
     , gapRate: 1 / 5
     , heightModRate: 1 / 6
     , verticalOffset: { higher: 20, lower: 60}
@@ -24,28 +24,55 @@ function generateCity(citySeed) {
     , randomSequence = new RandomSequence(citySeed)
     , numberOfBuildings = getNumberOfBuildings(randomSequence)
 
+    , lastBuildingHeight = getRandomHeight(randomSequence)
+    , lastBuildingX = 0
+
   console.log('Generating ' + numberOfBuildings + ' buildings')
 
   for (var i = 0; i < numberOfBuildings; i++) {
 
-    // var building =
-    //   { height:
-    //   , width:
-    //   , x:
-    //   }
+    var building =
+      { height: getRandomHeight(randomSequence)
+      , width: getRandomWidth(randomSequence)
+      , x: getRandomDistance(randomSequence)
+      }
 
-    // building[i] = building
+    lastBuildingX = building.x + building.width
+    lastBuildingHeight = building.height
+
+    buildings.push(building)
   }
+
+  console.log(buildings)
 
   return buildings
 }
 
-function getNumberOfBuildings(randomSequence) {
-  return ~~getRandomBetween(randomSequence.get(), cityRules.Numbuildings.min, cityRules.Numbuildings.max)
+function getRandomDistance(randomSequence, lastBuildingX) {
+
+  var distance = lastBuildingX;
+
+  if (randomSequence.get() >= cityRules.gapRate) {
+    return ~~getRandomBetween(randomSequence.get(), cityRules.density)
+  } else {
+    return distance
+  }
 }
 
-function getRandomBetween(random, min, max) {
-  return min + ((max - min) * random)
+function getRandomWidth(randomSequence) {
+  return ~~getRandomBetween(randomSequence.get(), buildingRules.dimensions.width)
+}
+
+function getRandomHeight(randomSequence) {
+  return ~~getRandomBetween(randomSequence.get(), buildingRules.dimensions.height)
+}
+
+function getNumberOfBuildings(randomSequence) {
+  return ~~getRandomBetween(randomSequence.get(), cityRules.numBuildings)
+}
+
+function getRandomBetween(random, object) {
+  return object.min + ((object.max - object.min) * random)
 }
 
 // buildingSeeds.forEach(function(seed) {

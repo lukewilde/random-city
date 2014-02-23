@@ -1,7 +1,7 @@
 var  buildingRules =
     { dimensions:
-      { height: { max: 300, min: 20 }
-      , width: { max: 40, min: 20 }
+      { height: { max: 300, min: 200 }
+      , width: { max: 120, min: 40 }
       }
     }
 

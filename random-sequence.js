@@ -14,14 +14,14 @@ function createRandomSequence(seed) {
   /**
    *
    */
-  function primeChaos() {
+  function init() {
     // 99 iterations will provide adequate randomness.
     for (var i = 0; i < 99; i++) {
       self.currentSeed = logisticMap(self.currentSeed)
     }
+
+    return self
   }
 
-  primeChaos()
-
-  return self
+  return init()
 }

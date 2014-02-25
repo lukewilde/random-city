@@ -1,13 +1,11 @@
-var RandomSequence = function(seed) {
+function createRandomSequence(seed) {
 
-  this.seed = seed
-
-  var currentSeed = null
-
-  this.get = function() {
-    currentSeed = logisticMap(currentSeed)
-    return currentSeed
-  }
+  var self =
+      { currentSeed: seed ? '0.' + seed : Math.random()
+      , get: function() {
+          return self.currentSeed = logisticMap(self.currentSeed)
+        }
+      }
 
   function logisticMap(x) {
     return 4 * x * (1 - x)
@@ -17,13 +15,13 @@ var RandomSequence = function(seed) {
    *
    */
   function primeChaos() {
-    currentSeed = '0.' + seed
-
-    // 100 iterations will provide adequate randomness
-    for (var i = 0; i < 100; i++) {
-      currentSeed = logisticMap(currentSeed)
+    // 99 iterations will provide adequate randomness.
+    for (var i = 0; i < 99; i++) {
+      self.currentSeed = logisticMap(self.currentSeed)
     }
   }
 
   primeChaos()
+
+  return self
 }

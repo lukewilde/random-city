@@ -18,7 +18,7 @@ var  buildingRules =
 function generateCity(citySeed) {
 
   var buildings = []
-    , randomSequence = new RandomSequence(citySeed)
+    , randomSequence = createRandomSequence(citySeed)
     , numberOfBuildings = getNumberOfBuildings(randomSequence)
 
     , lastBuildingHeight = getRandomHeight(randomSequence)

@@ -35,7 +35,7 @@ function generateCity(citySeed) {
       , width: getRandomWidth(randomSequence)
       }
 
-    building.x = getRandomDistance(randomSequence, currentXOffset, lastBuildingWidth)
+    building.x = getRandomDistance(randomSequence, cityRules.gap, currentXOffset)
 
     lastBuildingHeight = building.height
     lastBuildingWidth = building.width
@@ -50,31 +50,43 @@ function generateCity(citySeed) {
   return buildings
 }
 
-function getRandomDistance(randomSequence, currentXOffset, lastBuildingWidth) {
+function getRandomDistance(randomSequence, object, currentXOffset) {
 
-  var distance = currentXOffset;
+  var distance = currentXOffset
+    , result = randomRangeByRate(randomSequence, object)
 
-  if (randomSequence.get() <= cityRules.gap.rate) {
-    distance += ~~getRandomBetween(randomSequence.get(), cityRules.gap)
+    console.log(result, object)
+
+  if (result) {
+    return distance += result
   }
 
-  return distance
+  return currentXOffset
+}
+
+function randomRangeByRate(randomSequence, object) {
+
+  if (randomSequence.get() <= object.rate) {
+    return randomRange(randomSequence.get(), object)
+  }
+
+  return false;
 }
 
 function getRandomWidth(randomSequence) {
-  return ~~getRandomBetween(randomSequence.get(), buildingRules.dimensions.width)
+  return randomRange(randomSequence.get(), buildingRules.dimensions.width)
 }
 
 function getRandomHeight(randomSequence) {
-  return ~~getRandomBetween(randomSequence.get(), buildingRules.dimensions.height)
+  return randomRange(randomSequence.get(), buildingRules.dimensions.height)
 }
 
 function getNumberOfBuildings(randomSequence) {
-  return ~~getRandomBetween(randomSequence.get(), cityRules.numBuildings)
+  return randomRange(randomSequence.get(), cityRules.numBuildings)
 }
 
-function getRandomBetween(random, object) {
-  return object.min + ((object.max - object.min) * random)
+function randomRange(random, object) {
+  return Math.floor(object.min + ((object.max - object.min) * random))
 }
 
 function drawBuildings(canvas, buildings) {
